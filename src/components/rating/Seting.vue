@@ -25,33 +25,6 @@
       /></span>
     </template>
   </div>
-
-  <!-- <div class="tag is-black is-medium">
-    {{ rating }}
-    <template v-if="isAuth">
-      <span v-if="!checkScore" class="ml-2 buttons has-addons are-small">
-        <button
-          class="button is-primary is-rounded"
-          :class="$style.buttonWidth"
-          @click="sendRating('increase')"
-          :disabled="loading"
-        >
-          <span class="is-size-4 has-text-weight-bold">+</span>
-        </button>
-        <button
-          class="button is-danger is-rounded"
-          :class="$style.buttonWidth"
-          @click="sendRating('decrease')"
-          :disabled="loading"
-        >
-          <span class="is-size-4 has-text-weight-bold">-</span>
-        </button>
-      </span>
-      <span v-else class="ml-1 has-text-success" title="Вы уже оценили"
-        ><mdicon name="checkbox-marked-circle-outline"
-      /></span>
-    </template>
-  </div> -->
 </template>
 
 <script>
