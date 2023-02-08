@@ -1,19 +1,44 @@
 # kinobooms
 
-## Project setup
+## Установка проекта
+
 ```
 npm install
+
 ```
 
-### Compiles and hot-reloads for development
+### Сброка в режиме разработки
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Сборка в продакшен режиме
+
 ```
 npm run build
 ```
 
-### Customize configuration
+### Кофигурирование vue cli
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Дополнительные установки
+
+1. Установка CSS framework bulma
+
+```
+npm install bulma
+```
+
+2. Установка vform для удобной отправки форм на сервер
+
+```
+npm install axios vform
+```
+
+3)Установка иконок Material Design
+
+```
+npm install @mdi/js @jamescoyle/vue-icon
+```

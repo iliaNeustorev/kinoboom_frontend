@@ -1,25 +1,37 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import createRoutes from "./routes";
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+export default (store) => {
+  const routes = createRoutes();
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  const router = createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+  router.beforeEach(async (to, from, next) => {
+    let go;
+    if (to.meta.auth || to.meta.guest || to.meta.admin) {
+      await store.getters["userModule/ready"];
 
-export default router
+      let isLogin = store.getters["userModule/isAuth"];
+      let user = store.getters["userModule/user"];
+      let isAdmin = store.getters["userModule/isAdmin"];
+
+      if (to.meta.auth && !isLogin) {
+        go = { name: "home" };
+      } else if (to.meta.guest && isLogin) {
+        go = {
+          name: "profile.main",
+          params: { name: user.name },
+        };
+      }
+
+      if (to.meta.admin && !isAdmin) {
+        go = { name: "home" };
+      }
+    }
+    next(go);
+  });
+
+  return router;
+};

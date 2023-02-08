@@ -1,30 +1,51 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <alert-component />
+  </div>
+  <header class="has-background-warning" :class="$style.headerRadius">
+    <top-menu-component />
+  </header>
+  <div class="container">
+    <section class="columns">
+      <section class="column is-one-fifth">
+        <left-menu-component />
+      </section>
+      <section class="column">
+        <router-view></router-view>
+      </section>
+    </section>
+  </div>
+  <footer
+    class="has-background-success-light is-hidden-mobile mt-3"
+    :class="$style.footerRadius"
+  >
+    <footer-component />
+  </footer>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import AppTopMenu from "@/components/nav/TopMenu";
+import AppLeftMenu from "@/components/nav/LeftMenu";
+import AppAlerts from "@/components/info/Alerts";
+import AppFooter from "@/components/nav/Footer";
 
-nav {
-  padding: 30px;
-}
+export default {
+  components: {
+    "top-menu-component": AppTopMenu,
+    "left-menu-component": AppLeftMenu,
+    "alert-component": AppAlerts,
+    "footer-component": AppFooter,
+  },
+};
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+<style module>
+.headerRadius {
+  border-bottom-right-radius: 5%;
+  border-bottom-left-radius: 5%;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.footerRadius {
+  border-top-right-radius: 30%;
+  border-top-left-radius: 30%;
 }
 </style>
