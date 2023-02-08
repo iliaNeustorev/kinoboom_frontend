@@ -84,7 +84,7 @@ export default {
           this.$emit("reload-element");
         } catch (e) {
           this.addMessage({
-            text: `${e.response.data.errors}`,
+            text: e.response?.data?.errors ?? "Неизвестная ошибка...",
             timeout: 5000,
             importance: "warning",
           });
@@ -110,7 +110,7 @@ export default {
         });
       } catch (e) {
         this.addMessage({
-          text: `${e.response.data.errors}`,
+          text: e.response?.data?.errors ?? "Неизвестная ошибка...",
           timeout: 5000,
           importance: "warning",
         });
