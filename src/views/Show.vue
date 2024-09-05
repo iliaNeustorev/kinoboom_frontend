@@ -1,6 +1,5 @@
 <template>
-  <loading-component v-if="loading" />
-  <div v-else>
+  <div>
     <div v-if="!emptyElement" class="box">
       <show-element-component :object="element" @reload-element="getElement" />
       <show-comments-component
@@ -33,7 +32,6 @@ export default {
   },
   data() {
     return {
-      loading: false,
       element: {},
       commentsOfElement: [],
     };
